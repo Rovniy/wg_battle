@@ -1,72 +1,55 @@
 <template>
   <div class="container">
-    <h3>
-      Status:
-      <span v-if="pong && pong !== 1">OK</span>
-      <span v-else-if="pong === 1">WAIT CONNECTION...</span>
-      <span v-else>ERROR</span>
-    </h3>
-    <h1>{{ task }}</h1>
+    <h1>{{ task.text }}</h1>
   </div>
 </template>
 
 <script>
-import socket from '@/plugins/socket.io.js'
-
-const startMsg = 'Привет. Здесь будут появляться задания'
-
 export default {
   data () {
     return {
-      task: startMsg,
-      pong: 1,
-      interval: null
+      task: {
+        text: process.env.INTRO_TEXT
+      },
+      pong: 1
     }
   },
   beforeMount () {
-    socket.on('task', (data) => {
-      this.task = data.msg
+    this.$socket.on('INCOMING_TASK', (data) => {
+      console.log('INCOMING_TASK', data)
+      this.task = data
     })
-    socket.on('completed-tasks', (data) => {
+    this.$socket.on('COMPLETED_TASKS', (data) => {
+      console.log('COMPLETED_TASKS', data)
       if (data.length === 0) {
-        this.task = startMsg
+        this.task = {
+          text: process.env.INTRO_TEXT
+        }
       }
     })
-    socket.on('pong', () => {
-      this.pong = true
-      clearInterval(this.interval)
-      this.startTimer()
+    this.$socket.on('GET_LAST_TASK', (data) => {
+      console.log('GET_LAST_TASK', data)
+      this.task = data
     })
   },
   mounted () {
-    this.startTimer()
-  },
-  methods: {
-    startTimer () {
-      this.interval = setInterval(() => {
-        this.pong = false
-      }, 40000)
-    }
+    setTimeout(() => {
+      this.$socket.emit('task', { type: 'GET_LAST_TASK' })
+    }, 1000)
   }
 }
 </script>
 
 <style lang="sass" scoped>
-.container
-  width: 100vw
-  height: 100vh
-  display: flex
-  justify-content: center
-  align-items: center
-  flex-direction: column
+  .container
+    width: 100vw
+    height: calc(100vh - 60px)
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
 
-  h1
-    max-width: 70%
-    text-align: center
-
-  h3
-    display: block
-    width: 100%
-    max-width: 70%
-    text-align: center
+    h1
+      max-width: 70%
+      text-align: center
 </style>

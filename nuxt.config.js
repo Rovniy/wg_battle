@@ -1,3 +1,6 @@
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const { resolve } = require('path')
+
 export default {
   /*
   ** Headers of the page
@@ -21,7 +24,9 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    { src: resolve(__dirname, 'assets/styles/base.sass'), lang: 'sass' }
+
   ],
   /*
   ** Plugins to load before mounting the App

@@ -5,6 +5,7 @@
   "author": "Ravy",
   "private": true,
   "scripts": {
+    "server": "node ws-server/index.js",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -13,9 +14,12 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.0",
+    "dotenv": "^8.2.0",
     "element-ui": "^2.4.11",
+    "env": "^0.0.2",
     "express": "^4.17.1",
     "http": "^0.0.0",
+    "node-json-db": "^1.0.3",
     "node-sass": "^4.13.0",
     "nodemon": "^2.0.2",
     "nuxt": "^2.0.0",
