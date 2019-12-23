@@ -24,6 +24,10 @@ io.on('connection', function (socket) {
         console.log('SET_TASK', data.id)
         completedTasks.push({
           text: tasksList[data.id].text,
+          link: tasksList[data.id].hasOwnProperty('link') ? tasksList[data.id].link : null,
+          image: tasksList[data.id].hasOwnProperty('image') ? tasksList[data.id].image : null,
+          imageClass: tasksList[data.id].hasOwnProperty('imageClass') ? tasksList[data.id].imageClass : null,
+          textClass: tasksList[data.id].hasOwnProperty('textClass') ? tasksList[data.id].textClass : null,
           id: data.id,
           time: Date.now()
         })
@@ -76,6 +80,8 @@ http.listen(3001, function () {
 const getLastTask = () => {
   let lastTask = {
     text: process.env.INTRO_TEXT,
+    link: '',
+    image: '',
     id: 0,
     time: 0
   }

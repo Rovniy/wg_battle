@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-    <h1>{{ task.text }}</h1>
+    <img v-if="isHasImage" :src="isHasImage" :class="isHasImageClass" alt="isHasImage">
+    <h1 v-if="isHasText" :class="isHasTextClass">
+      {{ isHasText }}
+    </h1>
+    <a v-if="isHasLink" :href="isHasLink" target="_blank">
+      {{ isHasLink }}
+    </a>
   </div>
 </template>
 
@@ -12,6 +18,38 @@ export default {
         text: process.env.INTRO_TEXT
       },
       pong: 1
+    }
+  },
+  computed: {
+    isHasText () {
+      if (this.task.hasOwnProperty('text') && this.task.text !== null) {
+        return this.task.text
+      }
+      return false
+    },
+    isHasLink () {
+      if (this.task.hasOwnProperty('link') && this.task.link !== null) {
+        return (location.href + this.task.link)
+      }
+      return false
+    },
+    isHasImage () {
+      if (this.task.hasOwnProperty('image') && this.task.image !== null) {
+        return this.task.image
+      }
+      return false
+    },
+    isHasImageClass () {
+      if (this.task.hasOwnProperty('imageClass') && this.task.imageClass !== null) {
+        return this.task.imageClass
+      }
+      return false
+    },
+    isHasTextClass () {
+      if (this.task.hasOwnProperty('textClass') && this.task.textClass !== null) {
+        return this.task.textClass
+      }
+      return false
     }
   },
   beforeMount () {
@@ -41,15 +79,30 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .container
-    width: 100vw
-    height: calc(100vh - 60px)
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-direction: column
+.container
+  width: 100vw
+  height: calc(100vh - 60px)
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
 
-    h1
-      max-width: 70%
-      text-align: center
+  img
+    max-height: 500px
+
+  h1
+    margin: 20px 0
+    max-width: 70%
+    text-align: center
+
+.ask
+  height: 14px
+
+.Base64Spinner
+  @keyframes spinner
+    0%
+      transform: rotateZ(0) rotateY(0) rotateX(0)
+    100%
+      transform: rotateZ(360deg) rotateY(360deg) rotateX(360deg)
+  animation: spinner 2s infinite linear
 </style>
