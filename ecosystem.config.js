@@ -21,7 +21,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:Rovniy/wg_battle.git',
       path: '/var/www/febattle/html',
-      'post-deploy': 'yarn && yarn build && pm2 restart all'
+      'post-deploy': 'pm2 restart all'
     }
   }
 }
