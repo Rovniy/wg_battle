@@ -5747,7 +5747,7 @@
           <td><img src="/hub.gif" alt="hub"></td>
           <td><img src="/hub.gif" alt="hub"></td>
           <td><img src="/hub.gif" alt="hub"></td>
-          <td><img src="/moby.gif" alt="сервер"></td>
+          <td><img src="/moby.gif" alt="server" name="macos"></td>
           <td><img src="/hub.gif" alt="hub"></td>
           <td><img src="/hub.gif" alt="hub"></td>
           <td><img src="/hub.gif" alt="hub"></td>

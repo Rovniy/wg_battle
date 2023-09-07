@@ -16,8 +16,8 @@ module.exports = {
   ],
   deploy: {
     production: {
-      user: 'altcover',
-      host: '45.67.56.165',
+      user: 'root',
+      host: '45.84.225.161',
       ref: 'origin/master',
       repo: 'git@github.com:Rovniy/wg_battle.git',
       path: '/var/www/febattle/html',

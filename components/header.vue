@@ -1,7 +1,7 @@
 <template>
   <el-row class="header">
     <el-col :span="6" class="logo">
-      <img src="wargaming_net.png" alt="wg_logo">
+      <img src="gaijin.webp" alt="wg_logo">
     </el-col>
     <el-col :span="12" class="title">
       <h1>{{ title }}</h1>
