@@ -11,7 +11,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "deploy:production": "pm2 deploy pm2.config.js production update --force"
+    "deploy:production": "pm2 deploy ecosystem.config.js production update --force"
   },
   "dependencies": {
     "@nuxtjs/dotenv": "1.4.1",
